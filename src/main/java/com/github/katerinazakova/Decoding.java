@@ -2,25 +2,25 @@ package com.github.katerinazakova;
 
 public class Decoding {
 
-    public static String isValidEncodedMessage(String inputMessage) {
-        if (!(isOnlyZeroOrSpaceInCode(inputMessage))) {
+    public static String isValidEncodedMessage(String encodedMessage) {
+        if (!(isOnlyZeroOrSpaceInCode(encodedMessage))) {
             return "Encoded string is not valid.";
         }
-        if (!(isNumberOfBlocksEven(inputMessage))) {
+        if (!(isNumberOfBlocksEven(encodedMessage))) {
             return "Encoded string is not valid.";
         }
-        if (!(isLengthOfDecodeBinaryStringMultipleOf7(inputMessage))) {
+        if (!(isLengthOfDecodeBinaryStringMultipleOf7(encodedMessage))) {
             return "Encoded string is not valid.";
         }
-        if (!(is0Or00InEvenBlocks(inputMessage))) {
+        if (!(is0Or00InEvenBlocks(encodedMessage))) {
             return "Encoded string is not valid.";
         } else {
-            return "Decoded string: " + "\n" + decodeInputMessage(inputMessage);
+            return "Decoded string: " + "\n" + decodeBinaryString(encodedMessage);
         }
     }
 
-    public static String decodeInputMessage(String inputMessage) {
-        String decodeBinary = decodingBinaryString(inputMessage);
+    public static String decodeBinaryString(String encodeMessage) {
+        String decodeBinary = decodingMessageIntoBinaryString(encodeMessage);
 
         StringBuilder result = new StringBuilder();
         for (int i = 0; i < decodeBinary.length(); i += 7) {
@@ -31,10 +31,10 @@ public class Decoding {
         return result.toString();
     }
 
-    public static String decodingBinaryString(String inputMessage) {
+    public static String decodingMessageIntoBinaryString(String EncodedMessage) {
         StringBuilder decoded = new StringBuilder();
 
-        String[] blocks = inputMessage.split(" ");
+        String[] blocks = EncodedMessage.split(" ");
         for (int i = 0; i < blocks.length; i += 2) {
             String binaryDigit = blocks[i].equals("00") ? "0" : "1";
             int count = blocks[i + 1].length();
@@ -43,18 +43,19 @@ public class Decoding {
         return decoded.toString();
     }
 
-    public static boolean isOnlyZeroOrSpaceInCode(String inputMessage) {
-        return inputMessage.matches("^[0\\s]+$");
+    public static boolean isOnlyZeroOrSpaceInCode(String encodeMessage) {
+
+        return encodeMessage.matches("^[0\\s]+$");
     }
 
-    public static boolean isNumberOfBlocksEven(String inputMessage) {
-        String[] blocks = inputMessage.split(" ");
+    public static boolean isNumberOfBlocksEven(String encodeMessage) {
+        String[] blocks = encodeMessage.split(" ");
         int length = blocks.length;
         return (length % 2 == 0);
     }
 
-    public static boolean is0Or00InEvenBlocks(String inputMessage) {
-        String[] blocks = inputMessage.split(" ");
+    public static boolean is0Or00InEvenBlocks(String encodeMessage) {
+        String[] blocks = encodeMessage.split(" ");
         for (int i = 0; i < blocks.length; i += 2) {
             if (!("0".equals(blocks[i]) || "00".equals(blocks[i]))) {
                 return false;
@@ -63,8 +64,8 @@ public class Decoding {
         return true;
     }
 
-    public static boolean isLengthOfDecodeBinaryStringMultipleOf7(String inputMessage) {
-        int length = decodingBinaryString(inputMessage).length();
+    public static boolean isLengthOfDecodeBinaryStringMultipleOf7(String encodeMessage) {
+        int length = decodingMessageIntoBinaryString(encodeMessage).length();
         return length % 7 == 0;
     }
 }

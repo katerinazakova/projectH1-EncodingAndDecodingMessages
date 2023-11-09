@@ -6,6 +6,7 @@ import static com.github.katerinazakova.Decoding.isValidEncodedMessage;
 import static com.github.katerinazakova.Encoding.encodeInputMessage;
 
 public class Main {
+
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
