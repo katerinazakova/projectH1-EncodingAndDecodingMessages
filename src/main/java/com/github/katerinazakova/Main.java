@@ -2,11 +2,10 @@ package com.github.katerinazakova;
 
 import java.util.Scanner;
 
-import static com.github.katerinazakova.Decoding.isValidEncodedMessage;
+import static com.github.katerinazakova.Decoding.checkingValidityEncodedMessage;
 import static com.github.katerinazakova.Encoding.encodeInputMessage;
 
 public class Main {
-
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
@@ -23,7 +22,7 @@ public class Main {
                 case "decode":
                     System.out.println("Input encoded string:");
                     String inputMessage = scanner.nextLine();
-                    System.out.println(isValidEncodedMessage(inputMessage));
+                    System.out.println(checkingValidityEncodedMessage(inputMessage));
                     break;
                 case "exit":
                     System.out.println("Bye!");

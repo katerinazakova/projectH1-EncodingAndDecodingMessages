@@ -2,7 +2,7 @@ package com.github.katerinazakova;
 
 public class Decoding {
 
-    public static String isValidEncodedMessage(String encodedMessage) {
+    public static String checkingValidityEncodedMessage(String encodedMessage) {
         if (!(isOnlyZeroOrSpaceInCode(encodedMessage))) {
             return "Encoded string is not valid.";
         }
@@ -15,13 +15,15 @@ public class Decoding {
         if (!(is0Or00InEvenBlocks(encodedMessage))) {
             return "Encoded string is not valid.";
         } else {
-            return "Decoded string: " + "\n" + decodeBinaryString(encodedMessage);
+            return "Decoded string: " + "\n" + decodeEncodeMessage(encodedMessage);
         }
     }
+    public static String decodeEncodeMessage (String encodedMessage) {
+       String decodeBinary = decodingMessageIntoBinaryString(encodedMessage);
+       return Decoding.decodeBinaryString(decodeBinary);
+    }
 
-    public static String decodeBinaryString(String encodeMessage) {
-        String decodeBinary = decodingMessageIntoBinaryString(encodeMessage);
-
+    public static String decodeBinaryString(String decodeBinary) {
         StringBuilder result = new StringBuilder();
         for (int i = 0; i < decodeBinary.length(); i += 7) {
             String binaryChar = decodeBinary.substring(i, Math.min(i + 7, decodeBinary.length()));
