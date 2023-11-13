@@ -4,16 +4,16 @@ public class Decoding {
 
     public static String checkingValidityEncodedMessage(String encodedMessage) {
         if (!(isOnlyZeroOrSpaceInCode(encodedMessage))) {
-            return "Encoded string is not valid.";
+            return "Encoded string is not valid. String contain invalid characters";
         }
         if (!(isNumberOfBlocksEven(encodedMessage))) {
-            return "Encoded string is not valid.";
+            return "Encoded string is not valid. Number of blocks is not even";
         }
         if (!(isLengthOfDecodeBinaryStringMultipleOf7(encodedMessage))) {
-            return "Encoded string is not valid.";
+            return "Encoded string is not valid. The length of string is not valid";
         }
         if (!(is0Or00InEvenBlocks(encodedMessage))) {
-            return "Encoded string is not valid.";
+            return "Encoded string is not valid. Even blocks contain invalid number of zeros";
         } else {
             return "Decoded string: " + "\n" + decodeEncodeMessage(encodedMessage);
         }
