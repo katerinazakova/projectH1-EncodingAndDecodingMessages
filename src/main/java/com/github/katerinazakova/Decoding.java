@@ -4,23 +4,24 @@ public class Decoding {
 
     public static String checkingValidityEncodedMessage(String encodedMessage) {
         if (!(isOnlyZeroOrSpaceInCode(encodedMessage))) {
-            return "Encoded string is not valid. String contain invalid characters";
+            return "Message contains invalid characters";
         }
         if (!(isNumberOfBlocksEven(encodedMessage))) {
-            return "Encoded string is not valid. Number of blocks is not even";
+            return "Number of blocks are not even";
         }
         if (!(isLengthOfDecodeBinaryStringMultipleOf7(encodedMessage))) {
-            return "Encoded string is not valid. The length of string is not valid";
+            return "The length of string is not valid";
         }
         if (!(is0Or00InEvenBlocks(encodedMessage))) {
-            return "Encoded string is not valid. Even blocks contain invalid number of zeros";
+            return "Even blocks contain invalid number of zeros";
         } else {
-            return "Decoded string: " + "\n" + decodeEncodeMessage(encodedMessage);
+            return "Decoded message: " + "\n" + decodeEncodedMessage(encodedMessage);
         }
     }
-    public static String decodeEncodeMessage (String encodedMessage) {
-       String decodeBinary = decodingMessageIntoBinaryString(encodedMessage);
-       return Decoding.decodeBinaryString(decodeBinary);
+
+    public static String decodeEncodedMessage(String encodedMessage) {
+        String decodeBinary = decodeMessageIntoBinaryString(encodedMessage);
+        return Decoding.decodeBinaryString(decodeBinary);
     }
 
     public static String decodeBinaryString(String decodeBinary) {
@@ -33,7 +34,7 @@ public class Decoding {
         return result.toString();
     }
 
-    public static String decodingMessageIntoBinaryString(String EncodedMessage) {
+    public static String decodeMessageIntoBinaryString(String EncodedMessage) {
         StringBuilder decoded = new StringBuilder();
 
         String[] blocks = EncodedMessage.split(" ");
@@ -67,7 +68,7 @@ public class Decoding {
     }
 
     public static boolean isLengthOfDecodeBinaryStringMultipleOf7(String encodeMessage) {
-        int length = decodingMessageIntoBinaryString(encodeMessage).length();
+        int length = decodeMessageIntoBinaryString(encodeMessage).length();
         return length % 7 == 0;
     }
 }

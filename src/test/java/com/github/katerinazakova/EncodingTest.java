@@ -14,4 +14,14 @@ public class EncodingTest {
         );
     }
 
+    @Test
+    void encodeInputMessage_InValidInput() {
+        String expectedResult = "Invalid input contains empty string or non-ASCII characters";
+        assertAll(() -> assertEquals(expectedResult, Encoding.encodeInputMessage("Žák")),
+                () -> assertEquals(expectedResult, Encoding.encodeInputMessage("HELLO©")),
+                () -> assertEquals(expectedResult, Encoding.encodeInputMessage("")),
+                () -> assertEquals(expectedResult, Encoding.encodeInputMessage("€ˆ"))
+        );
+
+    }
 }

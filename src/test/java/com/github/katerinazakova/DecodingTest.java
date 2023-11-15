@@ -11,12 +11,12 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class DecodingTest {
     @Test
-    void decodingMessageIntoBinaryString_ValidInput() {
+    void decodeMessageIntoBinaryString_ValidInput() {
         // Arrange
         String input = "0 0 00 0000 0 000 00 0000 0 00";
         String expectedResult = "10000111000011";
         //Act
-        String result = Decoding.decodingMessageIntoBinaryString(input);
+        String result = Decoding.decodeMessageIntoBinaryString(input);
         // Assert
         assertEquals(expectedResult, result);
     }
