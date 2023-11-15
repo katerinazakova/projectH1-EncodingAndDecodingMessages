@@ -14,15 +14,15 @@ public class Main {
             String choice = scanner.nextLine();
             switch (choice) {
                 case "encode":
-                    System.out.println("Input string:");
-                    String inputText = scanner.nextLine();
-                    System.out.println("Encoded string:");
-                    System.out.println(encodeInputMessage(inputText));
+                    System.out.println("Input message:");
+                    String message = scanner.nextLine();
+                    System.out.println("Encoded message:");
+                    System.out.println(encodeInputMessage(message));
                     break;
                 case "decode":
-                    System.out.println("Input encoded string:");
-                    String inputMessage = scanner.nextLine();
-                    System.out.println(checkingValidityEncodedMessage(inputMessage));
+                    System.out.println("Input encoded message:");
+                    String encodedMessage = scanner.nextLine();
+                    System.out.println(checkingValidityEncodedMessage(encodedMessage));
                     break;
                 case "exit":
                     System.out.println("Bye!");
@@ -33,5 +33,4 @@ public class Main {
             }
         }
     }
-
 }
