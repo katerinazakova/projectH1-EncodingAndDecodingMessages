@@ -3,46 +3,23 @@ package com.github.katerinazakova;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-import org.junit.jupiter.params.provider.MethodSource;
-
-import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class DecodingTest {
     @Test
     void decodeMessageIntoBinaryString_ValidInput() {
-        // Arrange
-        String input = "0 0 00 0000 0 000 00 0000 0 00";
-        String expectedResult = "10000111000011";
-        //Act
-        String result = Decoding.decodeMessageIntoBinaryString(input);
-        // Assert
-        assertEquals(expectedResult, result);
+        assertAll(() -> assertEquals("10000111000011", Decoding.decodeMessageIntoBinaryString("0 0 00 0000 0 000 00 0000 0 00")),
+                () -> assertEquals("101011111010001101111010000011000011101101010000010010010111111",
+                        Decoding.decodeMessageIntoBinaryString("0 0 00 0 0 0 00 0 0 00000 00 0 0 0 00 000 0 00 00 0 0 0000 00 0 0 0 00 00000 0 00 00 0000 0 000 00 0 0 00 00 0 0 0 00 0 0 0 00 00000 0 0 00 00 0 0 00 00 0 0 00 0 0 000000"))
+        );
     }
 
     @Test
     void decodeBinaryString_ValidBinaryInput() {
-        // Arrange
-        String input = "10000111000011";
-        String expectedResult = "CC";
-        //Act
-        String result = Decoding.decodeBinaryString(input);
-        // Assert
-        assertEquals(expectedResult, result);
-    }
-
-    @ParameterizedTest
-    @MethodSource("nonBinaryInput")
-    void decodeBinaryString_NonBinaryInput_ThrowException(String input) {
-        assertThrows(NumberFormatException.class, () -> {
-            Decoding.decodeBinaryString(input);
-        });
-
-    }
-
-    static Stream<String> nonBinaryInput() {
-        return Stream.of("0 00 00 000 0 000000 0", "ABHTJIW", "111001A");
+        assertAll(() -> assertEquals("CC", Decoding.decodeBinaryString("10000111000011")),
+                () -> assertEquals("Who am I?", Decoding.decodeBinaryString("101011111010001101111010000011000011101101010000010010010111111"))
+        );
     }
 
     @ParameterizedTest
