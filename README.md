@@ -101,3 +101,5 @@ The first block of each sequence is not 0 or 00;
 The number of blocks is odd;
 
 The length of the decoded binary string is not a multiple of 7.
+
+Project from Hyperskill: https://hyperskill.org/
